@@ -1,0 +1,11 @@
+from django import template
+from cms.models import Menu
+register = template.Library()
+
+
+@register.inclusion_tag('menu.html', takes_context=True)
+def show_root_menu(context):
+    menu_items = Menu.objects.all()
+    return {
+        'menu_items': menu_items,
+    }
